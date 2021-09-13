@@ -37,14 +37,18 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_round_add_24"
-        android:background="@drawable/floting_button_shape"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|center"
         app:layout_anchor="@id/bottomAppBar"
+        app:layout_anchorGravity="center"
+        android:padding="10dp"
+        app:srcCompat="@drawable/ic_baseline_home_24"
+        android:background="@color/colorButton"
+        app:backgroundTint="@color/colorButton"
         android:contentDescription="@string/todo" />
 
 

@@ -25,4 +25,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="xraysFragmentTitile">بيان الأشعة و التحاليل</string>
     <string name="userAccountTitle">الحساب الشخصي</string>
+    <string name="userFullName">الاسم الرباعي</string>
+    <string name="analysisType">نوع التحاليل</string>
+    <string name="xrayType">نوع الأشعة</string>
+    <string name="requestNowText">اطلب الأن</string>
+    <string name="updateInfo">تحديث البيانات</string>
 </resources>
