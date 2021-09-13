@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/tabLaboratories"
+        android:title="@string/laboratories"
+        android:icon="@drawable/xray" />
+
+    <item android:id="@+id/placeholder"
+        android:title="" />
+
+    <item android:id="@+id/tabUserAccount"
+        android:title="@string/user_account"
+        android:icon="@drawable/ic_baseline_person_24" />
+
+</menu>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">GtsMedicalCompany</string>
+    <string name="laboratories">ألاشعة و التحاليل</string>
+    <string name="home">Home</string>
+    <string name="user_account">الحساب الشخصي</string>
+    <string name="todo">TODO</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="details">أضف تفاصيلك الأن</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="password">كلمة المرور</string>
+    <string name="new_user">مشترك جديد</string>
+    <string name="login_text">إذا كنت مشترك جديد سجل الأن</string>
+    <string name="signUptext">لإتمام التسجيل</string>
+    <string name="joinNow">انضم الأن</string>
+    <string name="confirmPassword">تأكيد كلمة المرور</string>
+    <string name="userEmail">البريد الالكتروني</string>
+    <string name="nationalID">الرقم القومي</string>
+    <string name="phoneNumber">رقم الهاتف</string>
+    <string name="address">العنوان</string>
+    <string name="privacyText">شروط الخصوصية</string>
+    <string name="fakeText">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet</string>
+    <string name="accept">موافق</string>
+    <string name="back">رجوع</string>
+</resources>
