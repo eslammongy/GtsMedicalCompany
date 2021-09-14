@@ -30,4 +30,7 @@
     <string name="xrayType">نوع الأشعة</string>
     <string name="requestNowText">اطلب الأن</string>
     <string name="updateInfo">تحديث البيانات</string>
+    <string name="doctorName">دكتور محمد مصطفي</string>
+    <string name="postTime">3 hour ago</string>
+    <string name="postDesc">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</string>
 </resources>

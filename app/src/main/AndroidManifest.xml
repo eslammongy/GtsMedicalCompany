@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GtsMedicalCompany">
-        <activity android:name=".ui.activities.HomeActivity"></activity>
+        <activity android:name=".ui.activities.FillXrayDetailsActivity"></activity>
+        <activity android:name=".ui.activities.HomeActivity" />
         <activity android:name=".ui.activities.PolicyTermsActivity" />
         <activity android:name=".ui.activities.RegisterActivity" />
         <activity android:name=".ui.activities.LoginActivity" />

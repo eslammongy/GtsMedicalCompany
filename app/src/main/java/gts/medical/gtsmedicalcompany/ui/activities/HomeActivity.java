@@ -9,14 +9,12 @@ import android.os.Bundle;
 import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.databinding.ActivityHomeBinding;
 import gts.medical.gtsmedicalcompany.ui.fragments.UserAccountFragment;
-import gts.medical.gtsmedicalcompany.ui.fragments.XrayFragment;
+import gts.medical.gtsmedicalcompany.ui.fragments.XraysPostsFragment;
 
 @SuppressLint("NonConstantResourceId")
 public class HomeActivity extends AppCompatActivity {
 
     ActivityHomeBinding binding;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +23,14 @@ public class HomeActivity extends AppCompatActivity {
 
         binding.bottomNavigationView.setBackground(null);
         if (savedInstanceState == null) {
-          getSupportFragmentManager().beginTransaction().replace(R.id.dashboardContainer, new XrayFragment()).commit();
+          getSupportFragmentManager().beginTransaction().replace(R.id.dashboardContainer, new XraysPostsFragment()).commit();
           binding.bottomNavigationView.setSelectedItemId(R.id.tabLaboratories);
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tabLaboratories:
-                    getSelectedFragment(new XrayFragment());
+                    getSelectedFragment(new XraysPostsFragment());
                     break;
                 case R.id.tabUserAccount:
                     getSelectedFragment(new UserAccountFragment());
