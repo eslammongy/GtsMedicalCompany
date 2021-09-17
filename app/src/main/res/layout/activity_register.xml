@@ -47,13 +47,15 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@drawable/component13"
+                android:scaleType="centerCrop"
+                android:padding="8dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_baseline_person_24"
                 app:layout_constraintBottom_toBottomOf="@id/ellipseImage"
                 app:layout_constraintEnd_toEndOf="@id/ellipseImage"
                 app:layout_constraintStart_toStartOf="@id/ellipseImage"
                 app:layout_constraintTop_toTopOf="@id/ellipseImage"
-                app:tint="@color/white" />
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,10 +71,11 @@
             android:padding="8dp"
             android:background="@drawable/inputtext_shape"
             android:layout_marginTop="15dp"
+            android:inputType="textPersonName"
             android:layout_marginHorizontal="10dp"
             android:textColor="@color/colorDark"
             android:fontFamily="@font/almarai_light"
-            tools:ignore="RtlSymmetry" />
+         />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUserAddress"
@@ -83,6 +86,7 @@
             android:paddingStart="10dp"
             android:hint="@string/address"
             android:padding="8dp"
+            android:inputType="textPostalAddress"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/inputtext_shape"
             android:layout_marginTop="10dp"
@@ -94,11 +98,12 @@
             android:id="@+id/etUserPhoneNum"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="start"
+            android:gravity="end"
             android:textSize="20sp"
             android:paddingStart="10dp"
             android:hint="@string/phoneNumber"
             android:padding="8dp"
+            android:inputType="phone"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/inputtext_shape"
             android:layout_marginTop="10dp"
@@ -115,6 +120,7 @@
             android:paddingStart="10dp"
             android:hint="@string/nationalID"
             android:padding="8dp"
+            android:inputType="number"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/inputtext_shape"
             android:layout_marginTop="10dp"
@@ -131,6 +137,7 @@
             android:paddingStart="10dp"
             android:hint="@string/userEmail"
             android:padding="8dp"
+            android:inputType="textEmailAddress"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/inputtext_shape"
             android:layout_marginTop="10dp"
@@ -142,11 +149,12 @@
             android:id="@+id/etUserPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="start"
+            android:gravity="end"
             android:textSize="20sp"
             android:paddingStart="10dp"
             android:hint="@string/password"
             android:padding="8dp"
+            android:inputType="textPassword"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/inputtext_shape"
             android:layout_marginTop="10dp"
@@ -158,17 +166,18 @@
             android:id="@+id/etConfirmUserPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="start"
+            android:gravity="end"
             android:textSize="20sp"
             android:paddingStart="10dp"
             android:hint="@string/confirmPassword"
             android:padding="8dp"
+            android:inputType="textWebPassword"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/inputtext_shape"
             android:layout_marginTop="15dp"
             android:textColor="@color/colorDark"
             android:fontFamily="@font/almarai_light"
-            tools:ignore="RtlSymmetry" />
+          />
 
         <Button
             android:id="@+id/btnUserSignUp"
@@ -190,6 +199,7 @@
             android:fontFamily="@font/almarai_bold"
             android:padding="5dp"
             android:text="@string/back"
+            android:layout_marginTop="5dp"
             android:textColor="@color/teal_700"
             android:textSize="20sp"
             android:gravity="center"

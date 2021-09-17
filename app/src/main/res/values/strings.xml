@@ -33,4 +33,14 @@
     <string name="doctorName">دكتور محمد مصطفي</string>
     <string name="postTime">3 hour ago</string>
     <string name="postDesc">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</string>
+    <string name="nameEmpty">name is required filed !</string>
+    <string name="addressEmpty">address is required filed !</string>
+    <string name="phoneEmpty">phone is required filed !</string>
+    <string name="nationalDEmpty">national id is required filed !</string>
+    <string name="phoneNotValied">Phone Number Must be in 10 Length</string>
+    <string name="emailEmpty">email is required filed !</string>
+    <string name="emailInvalied">Invalid Email Address!!</string>
+    <string name="passwordEmpty">password is required filed !</string>
+    <string name="passwordInvalied">Invalid Password!!</string>
+    <string name="samePassword">Check your password and confirm password is the same or not..</string>
 </resources>

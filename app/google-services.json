@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "669367534357",
+    "firebase_url": "https://gtsmedical-company-default-rtdb.firebaseio.com",
+    "project_id": "gtsmedical-company",
+    "storage_bucket": "gtsmedical-company.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669367534357:android:298b422526d62f5a605f1c",
+        "android_client_info": {
+          "package_name": "gts.medical.gtsmedicalcompany"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669367534357-g9jj1el6j7ceqiglvd3b90p2kanqqp3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdwYvzGLZdWcBpDiyjnANqD7JWTLAm018"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669367534357-g9jj1el6j7ceqiglvd3b90p2kanqqp3s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669367534357:android:3653c876d3edd9f1605f1c",
+        "android_client_info": {
+          "package_name": "jtc.admin.jtc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669367534357-th9lfdpqatdqje12jh4qd5e5d5n5qn4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jtc.admin.jtc",
+            "certificate_hash": "b7db778c5c48ed8bbba98033362505f5b76ae254"
+          }
+        },
+        {
+          "client_id": "669367534357-g9jj1el6j7ceqiglvd3b90p2kanqqp3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdwYvzGLZdWcBpDiyjnANqD7JWTLAm018"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669367534357-g9jj1el6j7ceqiglvd3b90p2kanqqp3s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
