@@ -1,26 +1,37 @@
 package gts.medical.gtsmedicalcompany;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import gts.medical.gtsmedicalcompany.ui.activities.HomeActivity;
 import gts.medical.gtsmedicalcompany.ui.activities.LoginActivity;
-import gts.medical.gtsmedicalcompany.ui.activities.PolicyTermsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
         new Handler().postDelayed(() -> {
-            Intent intent=new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+            if (firebaseAuth.getCurrentUser() == null){
+                Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }else {
+                Intent intent=new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
         }, 3000);
 
     }

@@ -43,4 +43,7 @@
     <string name="passwordEmpty">password is required filed !</string>
     <string name="passwordInvalied">Invalid Password!!</string>
     <string name="samePassword">Check your password and confirm password is the same or not..</string>
+    <string name="waiting">لحظة من فضلك</string>
+    <string name="exit">خروج</string>
+    <string name="edit">تعديل</string>
 </resources>
