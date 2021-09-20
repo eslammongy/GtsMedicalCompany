@@ -16,7 +16,7 @@
                 android:paddingEnd="10dp"
                 android:layout_marginTop="10dp"
                 android:drawableEnd="@drawable/ic_round_search_24"
-                android:textColorHint="@color/white"
+                android:textColorHint="#A3A3A3"
                 android:layout_marginHorizontal="10dp"
                 app:layout_constraintTop_toTopOf="parent"
                 android:background="@drawable/custom_txt_input_shape2"

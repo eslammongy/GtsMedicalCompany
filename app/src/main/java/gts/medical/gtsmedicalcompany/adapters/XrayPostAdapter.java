@@ -4,18 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
-
 import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.databinding.XrayRecyclerviewItemBinding;
 import gts.medical.gtsmedicalcompany.model.PostModel;
@@ -50,6 +43,7 @@ public class XrayPostAdapter extends RecyclerView.Adapter<XrayPostAdapter.XraysV
             intent.putExtra("PostID" , model.getXray_Uid());
             intent.putExtra("PostProfileName" , model.getXrays_name());
             intent.putExtra("PostProfileEmail" , model.getXray_email());
+            intent.putExtra("PostDesc" , model.getContent_xrays());
             context.startActivity(intent);
             ((Activity)context).finish();
         });

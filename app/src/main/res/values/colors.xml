@@ -10,4 +10,5 @@
     <color name="Grey">#DDDCDC</color>
     <color name="colorDark">#4A4B4D</color>
     <color name="colorButton">#25B0EF</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>

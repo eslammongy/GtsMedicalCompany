@@ -37,7 +37,7 @@
                 android:id="@+id/tvPostName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/almarai_bold"
+                android:fontFamily="@font/quicksand_egular"
                 android:text="@string/doctorName"
                 android:textColor="@color/colorDark"
                 android:textSize="17sp" />
@@ -48,9 +48,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:drawableStart="@drawable/ic_baseline_public_24"
-                android:drawablePadding="6dp"
-                android:fontFamily="@font/almarai_light"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/quicksand_light"
                 android:text="@string/postTime"
+                android:alpha="0.8"
                 android:textColor="@color/colorDark"
                 android:textSize="15sp" />
 
@@ -76,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
         android:layout_marginHorizontal="10dp"
-        android:fontFamily="@font/almarai_light"
+        android:fontFamily="@font/quicksand_egular"
         android:textColor="@color/colorDark"
         android:textSize="17sp"
         android:text="@string/postDesc"

@@ -4,19 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.HashMap;
 import java.util.Objects;
-
 import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.databinding.ActivityFillXrayDetailsBinding;
 import gts.medical.gtsmedicalcompany.utils.CustomDialog;
@@ -41,12 +36,13 @@ public class FillXrayDetailsActivity extends AppCompatActivity {
         String xrayPostID = getIntent().getStringExtra("PostID");
         String xrayPostName = getIntent().getStringExtra("PostProfileName");
         String xrayPostEmail = getIntent().getStringExtra("PostProfileEmail");
+        String xrayPostContent = getIntent().getStringExtra("PostDesc");
         customDialog = new CustomDialog();
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         checkFieldsValidation();
         binding.btnRequestXrayOffered.setOnClickListener(v -> {
             if (awesomeValidation.validate()){
-                requestXrayOffer(userID , xrayPostID , xrayPostName , xrayPostEmail);
+                requestXrayOffer(userID , xrayPostID , xrayPostName , xrayPostEmail , xrayPostContent);
             }else {
                 Util.displayToastMessage(FillXrayDetailsActivity.this , "خطأ في إرسال الطلب الخاص بك من قضلك تأكد من كتابة جميع البيانات" , Color.RED);
             }
@@ -71,7 +67,7 @@ public class FillXrayDetailsActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this , R.id.etMedicalAnalysisType ,RegexTemplate.NOT_EMPTY ,R.string.samePassword);
     }
 
-    private void requestXrayOffer(String userID , String xrayPostID , String xrayPostName , String xrayPostEmail){
+    private void requestXrayOffer(String userID , String xrayPostID , String xrayPostName , String xrayPostEmail , String postDesc){
         customDialog.showingProgressDialog(this);
         String userName = Objects.requireNonNull(binding.etUserName.getText()).toString().trim();
         String userAddress = Objects.requireNonNull(binding.etUserAddress.getText()).toString().trim();
@@ -92,6 +88,7 @@ public class FillXrayDetailsActivity extends AppCompatActivity {
         userMap.put("xrayUserPhone" , userPhone);
         userMap.put("xrayUserNationalID" , userNationalID);
         userMap.put("xrayUserEmail" , userEmail);
+        userMap.put("xrayPostContent" , postDesc);
         userMap.put("xrayType" , xrayType);
         userMap.put("xrayMedicalAnalysisType" , medicalAnalysisType);
 

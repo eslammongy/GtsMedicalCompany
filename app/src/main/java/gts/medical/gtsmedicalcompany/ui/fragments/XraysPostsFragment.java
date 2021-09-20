@@ -42,19 +42,21 @@ public class XraysPostsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentXraysPostsBinding.inflate(inflater, container, false);
 
+        postModels = new ArrayList<>();
+        xrayPostAdapter = new XrayPostAdapter(postModels , getContext());
         binding.rvXraysPosts.setHasFixedSize(true);
         binding.rvXraysPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        binding.rvXraysPosts.setAdapter(xrayPostAdapter);
         binding.progressBar.setVisibility(View.VISIBLE);
         rootDb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     PostModel postModel = dataSnapshot.getValue(PostModel.class);
-                    postModels = new ArrayList<>();
                     postModels.add(postModel);
                 }
-                xrayPostAdapter = new XrayPostAdapter(postModels , getContext());
-                binding.rvXraysPosts.setAdapter(xrayPostAdapter);
+
                 binding.progressBar.setVisibility(View.GONE);
                 xrayPostAdapter.notifyDataSetChanged();
             }
