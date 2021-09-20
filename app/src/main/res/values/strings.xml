@@ -48,4 +48,5 @@
     <string name="edit">تعديل</string>
     <string name="confirmed_request">الطلبات المؤكدة</string>
     <string name="search">Search</string>
+    <string name="search_hint">أدخل إسم المعمل هنا..</string>
 </resources>

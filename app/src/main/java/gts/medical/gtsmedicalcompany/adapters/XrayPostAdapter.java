@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +21,7 @@ import gts.medical.gtsmedicalcompany.databinding.XrayRecyclerviewItemBinding;
 import gts.medical.gtsmedicalcompany.model.PostModel;
 import gts.medical.gtsmedicalcompany.ui.activities.FillXrayDetailsActivity;
 
-public class XrayPostAdapter extends RecyclerView.Adapter<XrayPostAdapter.XraysViewHolder>{
+public class XrayPostAdapter extends RecyclerView.Adapter<XrayPostAdapter.XraysViewHolder>  {
 
     public ArrayList<PostModel> modelObjectArrayList;
     public Context context;
@@ -59,6 +61,7 @@ public class XrayPostAdapter extends RecyclerView.Adapter<XrayPostAdapter.XraysV
         return modelObjectArrayList.size();
     }
 
+
     static class XraysViewHolder extends RecyclerView.ViewHolder {
         private final XrayRecyclerviewItemBinding binding;
 
@@ -66,6 +69,11 @@ public class XrayPostAdapter extends RecyclerView.Adapter<XrayPostAdapter.XraysV
             super(rowBinding.getRoot());
             this.binding = rowBinding;
         }
+    }
+
+    public void filterList(ArrayList<PostModel> filteredList) {
+        modelObjectArrayList = filteredList;
+        notifyDataSetChanged();
     }
 }
 

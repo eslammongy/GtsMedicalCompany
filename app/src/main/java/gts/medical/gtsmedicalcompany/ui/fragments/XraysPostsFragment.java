@@ -1,14 +1,11 @@
 package gts.medical.gtsmedicalcompany.ui.fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -23,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.adapters.XrayPostAdapter;
 import gts.medical.gtsmedicalcompany.databinding.FragmentXraysPostsBinding;
 import gts.medical.gtsmedicalcompany.model.PostModel;
@@ -46,21 +42,19 @@ public class XraysPostsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentXraysPostsBinding.inflate(inflater, container, false);
 
-        postModels = new ArrayList<>();
-        xrayPostAdapter = new XrayPostAdapter(postModels , getContext());
         binding.rvXraysPosts.setHasFixedSize(true);
         binding.rvXraysPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvXraysPosts.setAdapter(xrayPostAdapter);
         binding.progressBar.setVisibility(View.VISIBLE);
         rootDb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-
                     PostModel postModel = dataSnapshot.getValue(PostModel.class);
+                    postModels = new ArrayList<>();
                     postModels.add(postModel);
                 }
+                xrayPostAdapter = new XrayPostAdapter(postModels , getContext());
+                binding.rvXraysPosts.setAdapter(xrayPostAdapter);
                 binding.progressBar.setVisibility(View.GONE);
                 xrayPostAdapter.notifyDataSetChanged();
             }
@@ -72,32 +66,32 @@ public class XraysPostsFragment extends Fragment {
         });
 
 
+        //** set search function **//
+        binding.contactSearchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {
+               filter(s.toString());
+            }
+        });
+
         return binding.getRoot();
 
     }
 
-    @SuppressLint("ResourceType")
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        getLayoutInflater().inflate(R.menu.search_menu , (ViewGroup) menu);
-        MenuItem menuItem = menu.findItem(R.id.actionSearch);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("أدخل إسم المعمل هنا..");
+    private void filter(String text) {
+        ArrayList<PostModel> filteredList = new ArrayList<>();
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
+        for (PostModel post : postModels) {
+            if (post.getXrays_name().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(post);
             }
+        }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-               //recyclerView.fil
-                return false;
-            }
-        });
-        super.onCreateOptionsMenu(menu, inflater);
+        xrayPostAdapter.filterList(filteredList);
     }
 
     @Override
