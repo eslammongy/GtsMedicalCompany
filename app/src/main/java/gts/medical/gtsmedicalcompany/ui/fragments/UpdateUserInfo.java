@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Map;
 import java.util.Objects;
 import gts.medical.gtsmedicalcompany.databinding.UpdateUserInfoDialogBinding;
+import gts.medical.gtsmedicalcompany.ui.activities.FillXrayDetailsActivity;
 import gts.medical.gtsmedicalcompany.utils.Util;
 
 public class UpdateUserInfo extends DialogFragment {
@@ -53,7 +54,7 @@ public class UpdateUserInfo extends DialogFragment {
 
         binding.btnUpdateInfo.setOnClickListener(v -> {
                updateUserInfo();
-            Objects.requireNonNull(getDialog()).dismiss();
+
         });
     }
 
@@ -71,9 +72,15 @@ public class UpdateUserInfo extends DialogFragment {
         String userEmail = Objects.requireNonNull(binding.tvUserEmail.getText()).toString();
         String userPhone = Objects.requireNonNull(binding.tvUserPhone.getText()).toString();
         String userAddress = Objects.requireNonNull(binding.tvUserAddress.getText()).toString();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(Util.getUserID());
-        Map<String , Object> mapUser = Map.of("name", userName, "email", userEmail, "phone",userPhone, "address" ,userAddress);
-        databaseReference.updateChildren(mapUser);
+        if (userAddress.equals(address) && userEmail.equals(email) && userName.equals(name)&& userPhone.equals(phone)){
+            Util.displayToastMessage(requireActivity() , "لم تقم بتعديل البيانات الخاصة بك" , Color.parseColor("#F3C34B"));
+        }else {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(Util.getUserID());
+            Map<String , Object> mapUser = Map.of("name", userName, "email", userEmail, "phone",userPhone, "address" ,userAddress);
+            databaseReference.updateChildren(mapUser);
+            Objects.requireNonNull(getDialog()).dismiss();
+            Util.displayToastMessage(requireActivity() , "نم تعديل البيانات الخاصة بك" , Color.GREEN);
+        }
     }
 
     @Override

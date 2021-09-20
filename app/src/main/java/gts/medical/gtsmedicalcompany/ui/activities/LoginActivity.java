@@ -1,6 +1,7 @@
 package gts.medical.gtsmedicalcompany.ui.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import java.util.Objects;
 import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.databinding.ActivityLoginBinding;
 import gts.medical.gtsmedicalcompany.utils.CustomDialog;
+import gts.medical.gtsmedicalcompany.utils.Util;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
@@ -45,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
            if (awesomeValidation.validate()){
                userSignIn();
            }else {
-               Toast.makeText(this, "من فضللك قم بكتابة الايميل و كلمة السر الخاصه بك", Toast.LENGTH_SHORT).show();
+               Util.displayToastMessage(this , "من فضللك قم بكتابة الايميل و كلمة السر الخاصه بك" , Color.parseColor("#E21229"));
            }
         });
 
@@ -65,12 +67,13 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(userEmail , userPassword).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 dialog.customDialog.dismiss();
+                Util.displayToastMessage(this , "تم تسجيل الدخول" , Color.parseColor("#1DD737"));
                 Intent intent = new Intent(LoginActivity.this, PolicyTermsActivity.class);
                 startActivity(intent);
                 finish();
             }else {
                 dialog.customDialog.dismiss();
-                Toast.makeText(this, "خطأ في تسجيل الدخول", Toast.LENGTH_SHORT).show();
+                Util.displayToastMessage(this , "خطأ في تسجيل الدخول" , Color.parseColor("#E21229"));
             }
 
         });

@@ -1,13 +1,20 @@
 package gts.medical.gtsmedicalcompany.ui.activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.databinding.ActivityHomeBinding;
+import gts.medical.gtsmedicalcompany.ui.fragments.ConfirmUserRequestsFragment;
 import gts.medical.gtsmedicalcompany.ui.fragments.UserAccountFragment;
 import gts.medical.gtsmedicalcompany.ui.fragments.XraysPostsFragment;
 
@@ -15,6 +22,7 @@ import gts.medical.gtsmedicalcompany.ui.fragments.XraysPostsFragment;
 public class HomeActivity extends AppCompatActivity {
 
     ActivityHomeBinding binding;
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +42,9 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case R.id.tabUserAccount:
                     getSelectedFragment(new UserAccountFragment());
+                    break;
+                case R.id.tabConfirmedRequests:
+                    getSelectedFragment(new ConfirmUserRequestsFragment());
                     break;
 
             }

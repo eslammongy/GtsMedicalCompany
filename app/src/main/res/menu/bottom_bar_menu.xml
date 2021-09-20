@@ -8,8 +8,14 @@
     <item android:id="@+id/placeholder"
         android:title="" />
 
+
+    <item android:id="@+id/tabConfirmedRequests"
+        android:title="@string/confirmed_request"
+        android:icon="@drawable/ic_confirm" />
+
     <item android:id="@+id/tabUserAccount"
         android:title="@string/user_account"
         android:icon="@drawable/ic_baseline_person_24" />
+
 
 </menu>

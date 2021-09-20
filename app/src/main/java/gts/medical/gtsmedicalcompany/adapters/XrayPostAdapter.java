@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
+import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.databinding.XrayRecyclerviewItemBinding;
 import gts.medical.gtsmedicalcompany.model.PostModel;
 import gts.medical.gtsmedicalcompany.ui.activities.FillXrayDetailsActivity;
@@ -35,13 +38,16 @@ public class XrayPostAdapter extends RecyclerView.Adapter<XrayPostAdapter.XraysV
     public void onBindViewHolder(@NonNull XraysViewHolder holder, int position) {
 
         PostModel model = modelObjectArrayList.get(position);
-        holder.binding.tvPostName.setText(model.getUserName());
-        holder.binding.tvPostDate.setText(model.getPostDate());
-        holder.binding.tvPostDesc.setText(model.getPostDesc());
-        holder.binding.postDescImage.setImageResource(model.getPostImage());
-        holder.binding.postUserImageView.setImageResource(model.getUserImage());
+        holder.binding.tvPostName.setText(model.getXrays_name());
+        holder.binding.tvPostDate.setText(model.getXrays_Date());
+        holder.binding.tvPostDesc.setText(model.getContent_xrays());
+        Glide.with(context).asBitmap().load(model.getBanner_profile()).placeholder(R.drawable.ic_image_place_holder).into(holder.binding.postDescImage);
+        Glide.with(context).asBitmap().load(model.getXrayProfilePhoto()).placeholder(R.drawable.ic_image_place_holder).into(holder.binding.postUserImageView);
         holder.binding.btnRequestXray.setOnClickListener(v -> {
             Intent intent = new Intent(context.getApplicationContext() , FillXrayDetailsActivity.class);
+            intent.putExtra("PostID" , model.getXray_Uid());
+            intent.putExtra("PostProfileName" , model.getXrays_name());
+            intent.putExtra("PostProfileEmail" , model.getXray_email());
             context.startActivity(intent);
             ((Activity)context).finish();
         });

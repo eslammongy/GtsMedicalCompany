@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -18,25 +19,21 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
-
 import java.util.Objects;
-
 import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.constants.AppConstants;
 import gts.medical.gtsmedicalcompany.databinding.ActivityRegisterBinding;
 import gts.medical.gtsmedicalcompany.model.UserModel;
 import gts.medical.gtsmedicalcompany.utils.CustomDialog;
+import gts.medical.gtsmedicalcompany.utils.Util;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -80,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (awesomeValidation.validate()){
                 userReregistration();
             }else {
-                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                Util.displayToastMessage(this , "من فضللك قم بكتابة جميع البيانات الخاصه بك" , Color.RED);
             }
         });
 
@@ -104,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this , R.id.etConfirmUserPassword , R.id.etUserPassword ,R.string.samePassword);
     }
     private void userReregistration() {
-        dialog.showingProgressDialog(this);
+        dialog.showingProgressDialog(this );
         userPassword = Objects.requireNonNull(binding.etUserPassword.getText()).toString().trim();
         userEmail = Objects.requireNonNull(binding.etUserEmail.getText()).toString().trim();
         userName = Objects.requireNonNull(binding.etUserName.getText()).toString().trim();
@@ -116,11 +113,12 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnSuccessListener(taskSnapshot -> {
                     Task<Uri> taskUri = taskSnapshot.getStorage().getDownloadUrl();
                     taskUri.addOnCompleteListener(uri -> {
-                        image = uri.getResult().toString();
+                        image = Objects.requireNonNull(uri.getResult()).toString();
                         firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)
                                 .addOnCompleteListener(task -> {
                                     if (task.isSuccessful()) {
                                         dialog.customDialog.dismiss();
+                                        Util.displayToastMessage(this , " تم انشاء الحساب الخاص بك بنجاح" , Color.GREEN);
                                         UserModel userModel = new UserModel(firebaseAuth.getUid(),
                                                 userName,
                                                 image,
@@ -129,14 +127,14 @@ public class RegisterActivity extends AppCompatActivity {
                                                 userEmail, userNationalID,
                                                 userPassword,
                                                 confirmPassword);
-                                        databaseReference.child(firebaseAuth.getUid()).setValue(userModel);
+                                        databaseReference.child(Objects.requireNonNull(firebaseAuth.getUid())).setValue(userModel);
                                         Intent intent = new Intent(RegisterActivity.this, PolicyTermsActivity.class);
                                         startActivity(intent);
                                         finish();
 
                                     }else{
                                         dialog.customDialog.dismiss();
-                                        Toast.makeText(this, "خطأ في انشاء الحساب الخاص بك من قضلك تأكد من اتصالك بالانترنت", Toast.LENGTH_SHORT).show();
+                                        Util.displayToastMessage(this , "خطأ في انشاء الحساب الخاص بك من قضلك تأكد من اتصالك بالانترنت" , Color.RED);
                                     }
                                 });
                     });
@@ -158,7 +156,8 @@ public class RegisterActivity extends AppCompatActivity {
                 imageUri = result.getUri();
                 Glide.with(this).asBitmap().load(imageUri).into(binding.imageView);
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
+                String error = result.getError().getMessage();
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -188,4 +187,11 @@ public class RegisterActivity extends AppCompatActivity {
                 .start(this);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
