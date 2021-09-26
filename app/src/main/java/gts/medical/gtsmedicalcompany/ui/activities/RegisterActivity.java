@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +22,7 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -86,6 +92,24 @@ public class RegisterActivity extends AppCompatActivity {
                 Util.requestStoragePermission(RegisterActivity.this);
             }
         });
+
+        binding.showHidePassword.setOnClickListener(v -> {
+           setPasswordVisibility(binding.etUserPassword , binding.showHidePassword);
+        });
+
+        binding.showHideConfirmedPassword.setOnClickListener(v -> {
+            setPasswordVisibility(binding.etConfirmUserPassword , binding.showHideConfirmedPassword);
+        });
+    }
+
+    private void setPasswordVisibility(TextInputEditText textInputEditText , ImageView imageView){
+        if (textInputEditText.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+            textInputEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            imageView.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+        }else {
+            textInputEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            imageView.setImageResource(R.drawable.ic_baseline_remove_red_eye_24);
+        }
     }
 
     private void checkFieldsValidation(){

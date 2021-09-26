@@ -3,11 +3,15 @@ package gts.medical.gtsmedicalcompany.ui.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -51,8 +55,22 @@ public class LoginActivity extends AppCompatActivity {
            }
         });
 
+        binding.showHidePassword.setOnClickListener(v -> {
+           setPasswordVisibility(binding.etUserPassword);
+        });
 
 
+
+    }
+
+    private void setPasswordVisibility(TextInputEditText textInputEditText){
+        if (textInputEditText.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+            textInputEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            binding.showHidePassword.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+        }else {
+            textInputEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            binding.showHidePassword.setImageResource(R.drawable.ic_baseline_remove_red_eye_24);
+        }
     }
 
     private void checkFieldsValidation(){
