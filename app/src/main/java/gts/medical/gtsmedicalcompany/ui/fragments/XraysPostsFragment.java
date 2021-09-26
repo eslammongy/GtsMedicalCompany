@@ -1,5 +1,6 @@
 package gts.medical.gtsmedicalcompany.ui.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import gts.medical.gtsmedicalcompany.adapters.XrayPostAdapter;
 import gts.medical.gtsmedicalcompany.databinding.FragmentXraysPostsBinding;
 import gts.medical.gtsmedicalcompany.model.PostModel;
+import gts.medical.gtsmedicalcompany.ui.activities.FillXrayDetailsActivity;
+import gts.medical.gtsmedicalcompany.utils.Util;
 
 public class XraysPostsFragment extends Fragment {
 
@@ -56,14 +59,13 @@ public class XraysPostsFragment extends Fragment {
                     PostModel postModel = dataSnapshot.getValue(PostModel.class);
                     postModels.add(postModel);
                 }
-
                 binding.progressBar.setVisibility(View.GONE);
                 xrayPostAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Util.displayToastMessage(requireActivity() , "خطأ في الإتصال بالإنترنت.." , Color.RED);
             }
         });
 

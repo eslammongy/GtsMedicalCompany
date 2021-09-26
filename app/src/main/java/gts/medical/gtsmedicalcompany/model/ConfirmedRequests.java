@@ -7,16 +7,18 @@ public class ConfirmedRequests {
     String confirmId;
     String xrayName;
     String xraycontent;
+    String Date;
 
     public ConfirmedRequests() {
     }
 
-    public ConfirmedRequests(String idUser, String postid, String confirmId, String xrayName, String xraycontent) {
+    public ConfirmedRequests(String idUser, String postid, String confirmId, String xrayName, String xraycontent , String Date) {
         IdUser = idUser;
         Postid = postid;
         this.confirmId = confirmId;
         this.xrayName = xrayName;
         this.xraycontent = xraycontent;
+        this.Date = Date;
     }
 
     public String getIdUser() {
@@ -57,5 +59,13 @@ public class ConfirmedRequests {
 
     public void setXraycontent(String xraycontent) {
         this.xraycontent = xraycontent;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 }

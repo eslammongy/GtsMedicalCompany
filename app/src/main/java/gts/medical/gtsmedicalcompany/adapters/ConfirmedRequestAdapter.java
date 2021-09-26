@@ -32,7 +32,7 @@ public class ConfirmedRequestAdapter extends RecyclerView.Adapter<ConfirmedReque
 
         ConfirmedRequests model = modelObjectArrayList.get(position);
         holder.binding.tvConfirmedRequestName.setText(model.getXrayName());
-        holder.binding.tvConfirmedRequestDate.setText(model.getXraycontent());
+        holder.binding.tvConfirmedRequestDate.setText(model.getDate());
 
     }
 

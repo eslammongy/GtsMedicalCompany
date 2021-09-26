@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,7 +35,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.Map;
 import java.util.Objects;
@@ -71,7 +71,12 @@ public class UserAccountFragment extends Fragment {
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
-                    uploadUserImage(uri);
+                    if (uri != null){
+                        uploadUserImage(uri);
+                    }else {
+                        Util.displayToastMessage(requireActivity() , "لم تقم بإختيار صورة شخصية..." , Color.RED);
+                    }
+
                 }
             });
 
@@ -121,19 +126,22 @@ public class UserAccountFragment extends Fragment {
                 if (snapshot.exists()) {
                     userModel = snapshot.getValue(UserModel.class);
                     assert userModel != null;
-                    Glide.with(requireContext()).asBitmap().load(userModel.getImage()).into(binding.userProfilePhoto);
+
                     binding.tvUserName.setText(userModel.getName());
                     binding.tvUserAddress.setText(userModel.getAddress());
                     binding.tvUserPhone.setText(userModel.getPhone());
                     binding.tvUserEmail.setText(userModel.getEmail());
-
+                    Glide.with(requireActivity()).asBitmap().load(userModel.getImage()).into(binding.userProfilePhoto);
                     binding.profileProgressBar.setVisibility(View.GONE);
+
+                }else {
+                    Util.displayToastMessage(requireActivity() , "خطأ في الاتصال بالأنترنت ..." , Color.RED);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Util.displayToastMessage(requireActivity() , "خطأ في الاتصال بالأنترنت ..." , Color.RED);
             }
         });
 
@@ -181,13 +189,6 @@ public class UserAccountFragment extends Fragment {
                 requireActivity(), permissions
                 , 1000
         );
-    }
-
-
-    private void pickUserImage() {
-        CropImage.activity()
-                .setCropShape(CropImageView.CropShape.OVAL)
-                .start(requireActivity());
     }
 
 

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parentView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
-
+    android:background="@drawable/dialog_bacground">
 
     <View
         android:id="@+id/constraintLayout"
@@ -14,7 +12,6 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/background_image"
         app:layout_constraintBottom_toBottomOf="@id/bottomView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/inputtext_shape"
+            android:background="@drawable/input_text_shape"
             android:fontFamily="@font/quicksand_egular"
             android:gravity="start|center"
             android:inputType="textPersonName"
@@ -67,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/inputtext_shape"
+            android:background="@drawable/input_text_shape"
             android:fontFamily="@font/quicksand_egular"
             android:gravity="start|center"
             android:inputType="textPostalAddress"
@@ -82,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/inputtext_shape"
+            android:background="@drawable/input_text_shape"
             android:fontFamily="@font/quicksand_egular"
             android:gravity="start|center"
             android:inputType="phone"
@@ -98,7 +95,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/inputtext_shape"
+            android:background="@drawable/input_text_shape"
             android:fontFamily="@font/quicksand_egular"
             android:gravity="start|center"
             android:inputType="textEmailAddress"
@@ -151,7 +148,7 @@
     <View
         android:id="@+id/bottomView"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         app:layout_constraintTop_toBottomOf="@+id/btnExitDialog" />
 
     <androidx.constraintlayout.widget.Guideline

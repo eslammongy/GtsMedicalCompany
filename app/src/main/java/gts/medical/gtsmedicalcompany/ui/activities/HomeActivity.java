@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
@@ -35,6 +37,14 @@ public class HomeActivity extends AppCompatActivity {
           binding.bottomNavigationView.setSelectedItemId(R.id.tabLaboratories);
         }
 
+        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this , FillXrayDetailsActivity.class);
+                startActivity(intent);
+
+            }
+        });
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tabLaboratories:

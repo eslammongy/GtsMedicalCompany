@@ -1,6 +1,5 @@
 package gts.medical.gtsmedicalcompany.ui.activities;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,8 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -26,8 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
 import java.util.Objects;
+
 import gts.medical.gtsmedicalcompany.R;
 import gts.medical.gtsmedicalcompany.constants.AppConstants;
 import gts.medical.gtsmedicalcompany.databinding.ActivityRegisterBinding;
@@ -74,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         binding.btnUserSignUp.setOnClickListener(v -> {
 
-            if (awesomeValidation.validate()){
+            if (awesomeValidation.validate() && imageUri != null){
                 userReregistration();
             }else {
                 Util.displayToastMessage(this , "من فضللك قم بكتابة جميع البيانات الخاصه بك" , Color.RED);
@@ -82,10 +80,10 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         binding.imageView.setOnClickListener(v -> {
-            if (checkUserStoragePermission()) {
-                pickUserImage();
+            if (Util.checkUserStoragePermission(RegisterActivity.this)) {
+                Util.pickUserImage(RegisterActivity.this);
             } else {
-                requestStoragePermission();
+                Util.requestStoragePermission(RegisterActivity.this);
             }
         });
     }
@@ -140,12 +138,6 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 });
     }
-
-    private boolean checkUserStoragePermission() {
-        return ContextCompat.checkSelfPermission(RegisterActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-    }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -162,31 +154,15 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-
-    private void requestStoragePermission() {
-        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        ActivityCompat.requestPermissions(
-                this, permissions
-                , 1000
-        );
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1000) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                pickUserImage();
+                Util.pickUserImage(RegisterActivity.this);
             else Toast.makeText(this, "Storage permission denied", Toast.LENGTH_SHORT).show();
         }
     }
-
-    private void pickUserImage() {
-        CropImage.activity()
-                .setCropShape(CropImageView.CropShape.OVAL)
-                .start(this);
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

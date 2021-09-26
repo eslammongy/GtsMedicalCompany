@@ -49,4 +49,8 @@
     <string name="confirmed_request">الطلبات المؤكدة</string>
     <string name="search">Search</string>
     <string name="search_hint">أدخل إسم المعمل هنا..</string>
+    <string name="undo">تراجع</string>
+    <string name="request">الطلبات المؤكدة</string>
+    <string name="payment_text">دفع</string>
+
 </resources>

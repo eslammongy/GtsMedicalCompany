@@ -3,11 +3,11 @@ package gts.medical.gtsmedicalcompany;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-
 import gts.medical.gtsmedicalcompany.ui.activities.HomeActivity;
 import gts.medical.gtsmedicalcompany.ui.activities.LoginActivity;
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        new Handler().postDelayed(() -> {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
             if (firebaseAuth.getCurrentUser() == null){
                 Intent intent=new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);

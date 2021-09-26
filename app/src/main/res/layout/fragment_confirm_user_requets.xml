@@ -6,21 +6,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.ConfirmUserRequestsFragment">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/contactSearchView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/search_hint"
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:fontFamily="@font/almarai_bold"
         android:gravity="center"
-        android:drawablePadding="10dp"
-        android:paddingEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:drawableEnd="@drawable/ic_round_search_24"
-        android:textColorHint="#A3A3A3"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/custom_txt_input_shape2"
-        />
+        android:padding="5dp"
+        android:text="@string/request"
+        android:textColor="@color/colorDark"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/emptyData"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_folder"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvConfirmedRequests"
@@ -28,7 +38,8 @@
         android:layout_height="0dp"
         android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactSearchView" />
+        app:layout_constraintTop_toBottomOf="@+id/materialTextView2"
+        tools:layout_editor_absoluteX="8dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
